@@ -1,0 +1,83 @@
+version: '3.9'
+
+services:
+  ton-node:
+    image: tonlabs/local-node:latest
+    container_name: ton_local_node
+    ports:
+      - '8080:8080'
+      - '4545:4545'
+      - '50051:50051'
+    environment:
+      - NETWORK_TYPE=regtest
+      - MINTER_SEED=sample_seed
+    volumes:
+      - ./data:/var/ton-node
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - create2_network
+
+  anvil-eth:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: anvil-eth
+    ports:
+      - '${PORT_ETH}:${PORT_ETH}'
+    restart: on-failure
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    entrypoint:
+      - anvil
+      - --host=0.0.0.0
+      - --port=${PORT_ETH}
+      - -m=${MNEMONIC}
+      - -f=${FORKING_URL_ETH}
+      - --fork-block-number=${FORKING_BLOCKNUMBER_ETH}
+      - --fork-chain-id=${FORKING_NETWORK_ID_ETH}
+      - --gas-limit=3000000000
+    networks:
+      - create2_network
+
+  anvil-bsc:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: anvil-bsc
+    ports:
+      - '${PORT_BSC}:${PORT_BSC}'
+    restart: on-failure
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    entrypoint:
+      - anvil
+      - --host=0.0.0.0
+      - --port=${PORT_BSC}
+      - -m=${MNEMONIC}
+      - -f=${FORKING_URL_BSC}
+      - --fork-block-number=${FORKING_BLOCKNUMBER_BSC}
+      - --fork-chain-id=${FORKING_NETWORK_ID_BSC}
+      - --gas-limit=3000000000
+    networks:
+      - create2_network
+
+  tronbox:
+    image: tronbox/tre:latest
+    container_name: tronbox
+    ports:
+      - '${PORT_TRON}:9090' # Порт для доступа к локальной ноде
+      - '${PORT_TRON_ADMIN}:9091' # Порт для управления
+    environment:
+      # fork: "https://api.trongrid.io"
+      # forkUrl: "https://api.trongrid.io"
+      accounts: 10
+      useDefaultPrivateKey: true
+      mnemonic: ${MNEMONIC}
+      defaultBalance: 10000
+      formatJson: true
+      preapprove: 'multiSignFee:1,allowMultiSign:1'
+    restart: on-failure
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - create2_network
+
+networks:
+  create2_network:
+    driver: bridge

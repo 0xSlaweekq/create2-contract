@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "lib": ["es2021", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitAny": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2021",
+    "typeRoots": ["./node_modules/@types", "./@types", "./types"]
+  },
+  "exclude": ["node_modules", "contracts", "build", "tronbox", "tronbox.js"],
+  "files": ["hardhat.config.ts"],
+  "include": ["hardhat.config.ts", "scripts", "test", "tasks", "deploy", "test.config.d.ts", "build/typechain", "utils", "flow"]
+}

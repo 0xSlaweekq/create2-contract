@@ -1,0 +1,81 @@
+{
+    "extends": "solhint:recommended",
+    "plugins": ["prettier"],
+    "rules": {
+        "avoid-call-value": "warn",
+        "avoid-low-level-calls": "warn",
+        "avoid-sha3": "warn",
+        "avoid-suicide": "warn",
+        "avoid-throw": "warn",
+        "avoid-tx-origin": "warn",
+        "check-send-result": "warn",
+        "code-complexity": ["off", 7],
+        "compiler-version": ["warn", "^0.8.20"],
+        "const-name-snakecase": "warn",
+        "constructor-syntax": "warn",
+        "contract-name-camelcase": "warn",
+        "event-name-camelcase": "warn",
+        "explicit-types": ["off", "explicit"],
+        "foundry-test-functions": ["off", ["setUp"]],
+        "func-name-mixedcase": "warn",
+        "func-named-parameters": ["warn", 10],
+        "func-param-name-mixedcase": "warn",
+        "func-visibility": [
+            "warn",
+            {
+                "ignoreConstructors": true
+            }
+        ],
+        "function-max-lines": ["warn", 100],
+        "gas-calldata-parameters": "warn",
+        "gas-custom-errors": "warn",
+        "gas-increment-by-one": "warn",
+        "gas-indexed-events": "warn",
+        "gas-named-return-values": "off",
+        "gas-strict-inequalities": "warn",
+        "gas-struct-packing": "warn",
+        "immutable-vars-naming": [
+            "warn",
+            {
+                "immutablesAsConstants": true
+            }
+        ],
+        "imports-on-top": "warn",
+        "max-line-length": ["error", 140],
+        "max-states-count": ["warn", 15],
+        "modifier-name-mixedcase": "warn",
+        "multiple-sends": "warn",
+        "named-parameters-mapping": "off",
+        "no-complex-fallback": "warn",
+        "no-console": "off",
+        "no-empty-blocks": "off",
+        "no-global-import": "off",
+        "no-inline-assembly": "off",
+        "no-unused-import": "warn",
+        "no-unused-vars": "warn",
+        "not-rely-on-block-hash": "warn",
+        "not-rely-on-time": "off",
+        "one-contract-per-file": "warn",
+        "ordering": "warn",
+        "payable-fallback": "warn",
+        "prettier/prettier": "warn",
+        "private-vars-leading-underscore": [
+            "warn",
+            {
+                "strict": false
+            }
+        ],
+        "quotes": "off",
+        "reason-string": [
+            "warn",
+            {
+                "maxLength": 64
+            }
+        ],
+        "reentrancy": "error",
+        "state-visibility": "warn",
+        "use-forbidden-name": "warn",
+        "var-name-mixedcase": "warn",
+        "visibility-modifier-order": "warn"
+    }
+}

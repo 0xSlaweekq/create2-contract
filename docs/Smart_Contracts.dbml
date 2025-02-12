@@ -1,0 +1,175 @@
+// Docs: https://dbml.dbdiagram.io/docs
+// https://dbdiagram.io/d/Create2-contracts-676c60385406798ef7a27c1f
+
+Table Admin {
+  allContract this
+
+  onlyOwner modifier
+
+  owner public
+  factory public
+  withdrawal public
+  isAdmined public
+
+  setAdmin onlyOwner
+  updateFactory onlyOwner
+  updateWithdrawal onlyOwner
+}
+
+Table UniversalFactory {
+  allContract this
+
+  onlyOwner modifier
+  onlyAdmined modifier
+
+  constructor withdrawal_address
+  createClone onlyOwner
+  withdrawAssetsFromClones onlyOwner
+  predictAddress public
+
+  PROXY address // адрес шаблонного прокси
+}
+
+Table UpgradeableProxy {
+  allContract this
+
+  fallback function
+  initProxy initializer // function
+  _delegate private // function
+}
+
+Table UniversalWithdrawal {
+  allContract this
+
+  universalTransfer function
+  withdraw function
+  withdrawERC20 function
+  withdrawManyERC20 function
+  withdrawFactory function
+
+  _withdrawERC20 private
+}
+
+Table Errors {
+  allContract this
+
+  Revert43 error
+  InvalidAddressAdmin error
+  InvalidAddressClone error
+  InvalidAddressFactory error
+  InvalidAddressField error
+  InvalidAddressOwner error
+  InvalidAddressRecipient error
+  InvalidAddressToken error
+  InvalidAddressWithdrawal error
+  OnlyAdmin error
+  OnlyFactory error
+  OnlyOwner error
+  CannotRemoveOwner error
+  ArrayLengthMismatch error
+  ArrayAccountsCantBeZero error
+  ArrayRecipientsCantBeZero error
+  AmountMustBeGreaterThanZero error
+  InvalidTransferParameters error
+  TokenAmountsCantBeZero error
+  UnsupportedTransferType error
+  UniversalTransferFailed error
+  WithdrawERC20Failed error
+  WithdrawFailed error
+  NoClonesProvided error
+  ClonesNotEqualAmounts error
+  InvalidField error
+  InsufficientBalance error
+  WithdrawalNotEqual error
+}
+
+Table Events {
+  allContract this
+
+  AdminInitialized event
+  AdminStatusChanged event
+  CloneCreated event
+  FieldUpdated event
+  Received event
+  ProxyInitialized event
+  UpdateFactory event
+  Withdrawn event
+  WithdrawalUpdated event
+}
+
+Table LibAdmin {
+  allContract this
+
+  Storage struct
+  Field enum
+
+  _initialize internal
+  _checkOwner internal
+  _checkFactory internal
+  _checkAdmin internal
+
+  _owner internal
+  _factory internal
+  _withdrawal internal
+
+  _setAdmin internal
+  _isAdmined internal
+  _updateField internal
+
+  _storage internal
+}
+
+Table Storage {
+  allContract this
+
+  owner address
+  factory address
+  withdrawal address
+  admins map_address_bool
+}
+
+Table Field {
+  allContract this
+
+  Factory address
+  Withdrawal address
+}
+
+// References
+Ref: "LibAdmin"."allContract" < "Storage"."allContract"
+Ref: "LibAdmin"."allContract" < "Field"."allContract"
+Ref: "LibAdmin"."allContract" < "Events"."allContract"
+Ref: "LibAdmin"."allContract" < "Errors"."allContract"
+
+Ref: "Admin"."allContract" < "LibAdmin"."allContract"
+Ref: "Admin"."allContract" < "Events"."allContract"
+Ref: "Admin"."allContract" < "Errors"."allContract"
+Ref: "Admin"."owner" < "LibAdmin"."_owner"
+Ref: "Admin"."factory" < "LibAdmin"."_factory"
+Ref: "Admin"."withdrawal" < "LibAdmin"."_withdrawal"
+Ref: "Admin"."isAdmined" < "LibAdmin"."_isAdmined"
+Ref: "Admin"."setAdmin" < "LibAdmin"."_setAdmin"
+Ref: "Admin"."updateFactory" < "LibAdmin"."_updateField"
+Ref: "Admin"."updateWithdrawal" < "LibAdmin"."_updateField"
+
+Ref: "UniversalFactory"."allContract" < "Admin"."allContract"
+Ref: "UniversalFactory"."allContract" < "Events"."allContract"
+Ref: "UniversalFactory"."allContract" < "Errors"."allContract"
+Ref: "UniversalFactory"."allContract" < "UpgradeableProxy"."allContract"
+Ref: "UniversalFactory"."createClone" < "UpgradeableProxy"."allContract"
+Ref: "UniversalFactory"."createClone" < "UpgradeableProxy"."initProxy"
+Ref: "UniversalFactory"."createClone" < "LibAdmin"."_storage"
+Ref: "UniversalFactory"."withdrawAssetsFromClones" < "UpgradeableProxy"."fallback"
+Ref: "UniversalFactory"."onlyOwner" < "LibAdmin"."_checkOwner"
+Ref: "UniversalFactory"."onlyAdmined" < "LibAdmin"."_checkAdmin"
+
+Ref: "UpgradeableProxy"."fallback" < "UniversalWithdrawal"."allContract"
+Ref: "UpgradeableProxy"."fallback" < "Events"."allContract"
+Ref: "UpgradeableProxy"."fallback" < "Errors"."allContract"
+Ref: "UpgradeableProxy"."fallback" < "LibAdmin"."_checkAdmin"
+Ref: "UpgradeableProxy"."initProxy" < "LibAdmin"."_initialize"
+Ref: "UpgradeableProxy"."initProxy" < "LibAdmin"."_checkFactory"
+Ref: "UpgradeableProxy"."_delegate" < "LibAdmin"."_storage"
+
+Ref: "UniversalWithdrawal"."allContract" < "Events"."allContract"
+Ref: "UniversalWithdrawal"."allContract" < "Errors"."allContract"
