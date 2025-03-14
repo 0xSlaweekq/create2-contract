@@ -1,21 +1,21 @@
 version: '3.9'
 
 services:
-  ton-node:
-    image: tonlabs/local-node:latest
-    container_name: ton_local_node
-    ports:
-      - '8080:8080'
-      - '4545:4545'
-      - '50051:50051'
-    environment:
-      - NETWORK_TYPE=regtest
-      - MINTER_SEED=sample_seed
-    volumes:
-      - ./data:/var/ton-node
-      - /etc/localtime:/etc/localtime:ro
-    networks:
-      - create2_network
+  # ton-node:
+  #   image: tonlabs/local-node:latest
+  #   container_name: ton_local_node
+  #   ports:
+  #     - '8080:8080'
+  #     - '4545:4545'
+  #     - '50051:50051'
+  #   environment:
+  #     - NETWORK_TYPE=regtest
+  #     - MINTER_SEED=sample_seed
+  #   volumes:
+  #     - ./data:/var/ton-node
+  #     - /etc/localtime:/etc/localtime:ro
+  #   networks:
+  #     - create2_network
 
   anvil-eth:
     image: ghcr.io/foundry-rs/foundry:latest

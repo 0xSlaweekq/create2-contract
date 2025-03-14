@@ -8,10 +8,10 @@ pragma solidity ^0.8.22;
  * @author Publius
  */
 contract MockUniswapV2Pair {
-    /**
-     * @dev Returns the balance of the specified owner.
-     * @param owner The address of the owner to retrieve the balance for.
-     * @return The balance of the specified owner.
-     */
-    function balanceOf(address owner) external view returns (uint256) {}
+  /**
+   * @dev Returns the balance of the specified owner.
+   * @param owner The address of the owner to retrieve the balance for.
+   * @return The balance of the specified owner.
+   */
+  function balanceOf(address owner) external view returns (uint256) {}
 }

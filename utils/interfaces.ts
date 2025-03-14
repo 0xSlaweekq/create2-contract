@@ -1,5 +1,5 @@
-import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers"
-import { TronWeb } from "tronweb"
+import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers'
+import { TronWeb } from 'tronweb'
 /**
  * @title Enums for Withdrawal Methods and Function Selectors
  * @dev Enumerations and type definitions for managing withdrawal methods and related function selectors.
@@ -12,8 +12,8 @@ import { TronWeb } from "tronweb"
  * - `encode`: Encodes input data for a transaction or call.
  */
 export enum GetFunctionDataType {
-    "decode" = "decode",
-    "encode" = "encode",
+  'decode' = 'decode',
+  'encode' = 'encode',
 }
 
 /**
@@ -26,11 +26,11 @@ export enum GetFunctionDataType {
  * - `withdrawManyERC20`: Batch withdrawal of ERC20 tokens to multiple recipients.
  */
 export enum WithdrawalMethods {
-    "universalTransfer" = "universalTransfer",
-    "withdraw" = "withdraw",
-    "withdrawERC20" = "withdrawERC20",
-    "withdrawFactory" = "withdrawFactory",
-    "withdrawManyERC20" = "withdrawManyERC20",
+  'universalTransfer' = 'universalTransfer',
+  'withdraw' = 'withdraw',
+  'withdrawERC20' = 'withdrawERC20',
+  'withdrawFactory' = 'withdrawFactory',
+  'withdrawManyERC20' = 'withdrawManyERC20',
 }
 
 /**
@@ -39,11 +39,11 @@ export enum WithdrawalMethods {
  * - Function selectors align with the ABI definition for each withdrawal method.
  */
 export enum WithdrawalFunctionSelector {
-    "universalTransfer" = "universalTransfer(address,address,uint256,uint8)",
-    "withdraw" = "withdraw(address[],uint256[])",
-    "withdrawERC20" = "withdrawERC20(address,address,uint256)",
-    "withdrawFactory" = "withdrawFactory(address,address,uint256)",
-    "withdrawManyERC20" = "withdrawManyERC20(address[],address[],uint256[])",
+  'universalTransfer' = 'universalTransfer(address,address,uint256,uint8)',
+  'withdraw' = 'withdraw(address[],uint256[])',
+  'withdrawERC20' = 'withdrawERC20(address,address,uint256)',
+  'withdrawFactory' = 'withdrawFactory(address,address,uint256)',
+  'withdrawManyERC20' = 'withdrawManyERC20(address[],address[],uint256[])',
 }
 
 /**
@@ -58,13 +58,13 @@ export enum WithdrawalFunctionSelector {
  * - `data`: Contains transfer parameters (token, recipient, amount, transfer type).
  */
 export type UniversalTransferDto = {
-    method: WithdrawalMethods.universalTransfer
-    data: {
-        [Names.token]: string
-        [Names.to]: string
-        [Names.amount]: number
-        [Names.transferType]: string
-    }
+  method: WithdrawalMethods.universalTransfer
+  data: {
+    [Names.token]: string
+    [Names.to]: string
+    [Names.amount]: number
+    [Names.transferType]: string
+  }
 }
 
 /**
@@ -74,11 +74,11 @@ export type UniversalTransferDto = {
  * - `data`: Contains recipients and amounts.
  */
 export type WithdrawDto = {
-    method: WithdrawalMethods.withdraw
-    data: {
-        [Names.recipients]: string[]
-        [Names.amounts]: number[]
-    }
+  method: WithdrawalMethods.withdraw
+  data: {
+    [Names.recipients]: string[]
+    [Names.amounts]: number[]
+  }
 }
 
 /**
@@ -88,12 +88,12 @@ export type WithdrawDto = {
  * - `data`: Contains token address, recipient, and amount.
  */
 export type WithdrawERC20Dto = {
-    method: WithdrawalMethods.withdrawERC20
-    data: {
-        [Names.token]: string
-        [Names.recipient]: string
-        [Names.amount]: number
-    }
+  method: WithdrawalMethods.withdrawERC20
+  data: {
+    [Names.token]: string
+    [Names.recipient]: string
+    [Names.amount]: number
+  }
 }
 
 /**
@@ -103,12 +103,12 @@ export type WithdrawERC20Dto = {
  * - `data`: Contains token address, recipient, and amount.
  */
 export type WithdrawFactoryDto = {
-    method: WithdrawalMethods.withdrawFactory
-    data: {
-        [Names.token]: string
-        [Names.recipient]: string
-        [Names.amount]: number
-    }
+  method: WithdrawalMethods.withdrawFactory
+  data: {
+    [Names.token]: string
+    [Names.recipient]: string
+    [Names.amount]: number
+  }
 }
 
 /**
@@ -118,12 +118,12 @@ export type WithdrawFactoryDto = {
  * - `data`: Contains arrays of token addresses, recipients, and amounts.
  */
 export type WithdrawManyERC20Dto = {
-    method: WithdrawalMethods.withdrawManyERC20
-    data: {
-        [Names.tokens]: string[]
-        [Names.recipients]: string[]
-        [Names.amounts]: number[]
-    }
+  method: WithdrawalMethods.withdrawManyERC20
+  data: {
+    [Names.tokens]: string[]
+    [Names.recipients]: string[]
+    [Names.amounts]: number[]
+  }
 }
 
 /**
@@ -133,8 +133,8 @@ export type WithdrawManyERC20Dto = {
  * - `type`: The type of the parameter (e.g., `address`, `uint256`).
  */
 export type SelectorTypes = {
-    name: Names
-    type: string
+  name: Names
+  type: string
 }
 
 /**
@@ -144,8 +144,8 @@ export type SelectorTypes = {
  * - `value`: The value of the argument.
  */
 export type ArgsType = {
-    type: string
-    value: any | number | string | number[] | string[]
+  type: string
+  value: any | number | string | number[] | string[]
 }
 
 /**
@@ -155,8 +155,8 @@ export type ArgsType = {
  * - `args`: The arguments for the function.
  */
 export type DataType = {
-    functionSelector: WithdrawalFunctionSelector
-    args: ArgsType[]
+  functionSelector: WithdrawalFunctionSelector
+  args: ArgsType[]
 }
 
 /**
@@ -172,14 +172,14 @@ export type DataType = {
  * - `transferType`: Type of transfer being performed (normal, safe, or custom).
  */
 export enum Names {
-    "token" = "token",
-    "tokens" = "tokens",
-    "to" = "to",
-    "recipient" = "recipient",
-    "recipients" = "recipients",
-    "amount" = "amount",
-    "amounts" = "amounts",
-    "transferType" = "transferType",
+  'token' = 'token',
+  'tokens' = 'tokens',
+  'to' = 'to',
+  'recipient' = 'recipient',
+  'recipients' = 'recipients',
+  'amount' = 'amount',
+  'amounts' = 'amounts',
+  'transferType' = 'transferType',
 }
 
 /**
@@ -192,11 +192,11 @@ export enum Names {
  * - `withdrawManyERC20`: Selector types for batch ERC20 withdrawals.
  */
 export type GetSelectorTypes = {
-    [WithdrawalMethods.universalTransfer]: SelectorTypes[]
-    [WithdrawalMethods.withdraw]: SelectorTypes[]
-    [WithdrawalMethods.withdrawERC20]: SelectorTypes[]
-    [WithdrawalMethods.withdrawFactory]: SelectorTypes[]
-    [WithdrawalMethods.withdrawManyERC20]: SelectorTypes[]
+  [WithdrawalMethods.universalTransfer]: SelectorTypes[]
+  [WithdrawalMethods.withdraw]: SelectorTypes[]
+  [WithdrawalMethods.withdrawERC20]: SelectorTypes[]
+  [WithdrawalMethods.withdrawFactory]: SelectorTypes[]
+  [WithdrawalMethods.withdrawManyERC20]: SelectorTypes[]
 }
 
 /**
@@ -208,10 +208,10 @@ export type GetSelectorTypes = {
  * - `allowThrow`: Optional flag to suppress errors.
  */
 export type CallProxyTronDto = {
-    tronWeb: TronWeb
-    proxyAddress: string
-    getDataInput: UniversalTransferDto | WithdrawDto | WithdrawERC20Dto | WithdrawFactoryDto | WithdrawManyERC20Dto
-    allowThrow?: boolean
+  tronWeb: TronWeb
+  proxyAddress: string
+  getDataInput: UniversalTransferDto | WithdrawDto | WithdrawERC20Dto | WithdrawFactoryDto | WithdrawManyERC20Dto
+  allowThrow?: boolean
 }
 
 /**
@@ -223,10 +223,10 @@ export type CallProxyTronDto = {
  * - `allowThrow`: Optional flag to suppress errors.
  */
 export type CallProxyDto = {
-    owner: SignerWithAddress
-    proxyAddress: string
-    data: string
-    allowThrow?: boolean
+  owner: SignerWithAddress
+  proxyAddress: string
+  data: string
+  allowThrow?: boolean
 }
 
 /**
@@ -236,8 +236,8 @@ export type CallProxyDto = {
  * - `allowThrow`: Optional flag to suppress error propagation.
  */
 export type GetErrorDto = {
-    e: any
-    allowThrow?: boolean
+  e: any
+  allowThrow?: boolean
 }
 
 /**
@@ -248,9 +248,9 @@ export type GetErrorDto = {
  * - `type`: The type of operation (`encode` or `decode`).
  */
 export type GetFunctionDataDto = {
-    method: WithdrawalMethods
-    data: any
-    type?: GetFunctionDataType
+  method: WithdrawalMethods
+  data: any
+  type?: GetFunctionDataType
 }
 
 /**

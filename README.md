@@ -85,7 +85,7 @@ Read more about contracts in:
 - For contract [UpgradeableProxy](contracts/common/UpgradeableProxy.sol) read
   [this](docs/UpgradeableProxy.md)
 
-    **Utils:**
+  **Utils:**
 
 - For contract [Admin](contracts/utils/Admin.sol) read [this](docs/Admin.md)
 - For interface [IEvents](contracts/utils/IEvents.sol) read
@@ -106,12 +106,12 @@ Read more about contracts in:
 ## **Use Cases**
 
 1. **Decentralized Finance (DeFi)**:
-    - Token swaps, staking, and yield farming with robust withdrawal mechanisms.
+   - Token swaps, staking, and yield farming with robust withdrawal mechanisms.
 2. **Gaming and NFTs**:
-    - Efficient deployment of contract clones for managing in-game assets or
-      NFTs.
+   - Efficient deployment of contract clones for managing in-game assets or
+     NFTs.
 3. **Multi-Chain Applications**:
-    - Building dApps that interact with multiple blockchain networks.
+   - Building dApps that interact with multiple blockchain networks.
 
 ## **Contact and Support**
 

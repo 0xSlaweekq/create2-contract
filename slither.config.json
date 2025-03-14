@@ -1,7 +1,7 @@
 {
-    "detectors_to_run": "all",
-    "disable_color": false,
-    "filter_paths": "(contracts/mock|node_modules)",
-    "show_ignored_findings": true,
-    "triage_database": "slither.db.json"
+  "detectors_to_run": "all",
+  "disable_color": false,
+  "filter_paths": "(contracts/mock|node_modules)",
+  "show_ignored_findings": true,
+  "triage_database": "slither.db.json"
 }

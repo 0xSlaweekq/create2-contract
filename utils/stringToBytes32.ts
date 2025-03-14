@@ -1,4 +1,4 @@
-import { ethers } from "hardhat" // For utilities
+import { ethers } from 'hardhat' // For utilities
 
 /**
  * Converts a string to the bytes32 format.
@@ -6,5 +6,5 @@ import { ethers } from "hardhat" // For utilities
  * @returns the string in bytes32 format.
  */
 export const stringToBytes32 = (argString: string): string => {
-    return ethers.encodeBytes32String(argString)
+  return ethers.encodeBytes32String(argString)
 }
